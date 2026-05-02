@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настюша, с 1 месяцем нас!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ffe5ec 0%, #fbc2eb 100%);
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 30px 20px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+            max-width: 320px;
+            animation: popUp 1.2s ease-out;
+        }
+        
+        .couple-photo {
+            width: 100%;
+            max-height: 250px;
+            border-radius: 16px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.2);
+        }
+
+        /* Анимированный текст */
+        .animated-text {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin: 10px 0;
+        }
+
+        .animated-text span {
+            color: #ff4d6d;
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: inline-block;
+            animation: bounceIn 0.8s ease backwards;
+        }
+
+        /* Задержка для каждой буквы, чтобы они появлялись по очереди */
+        .animated-text span:nth-child(1) { animation-delay: 0.2s; }
+        .animated-text span:nth-child(2) { animation-delay: 0.4s; }
+        .animated-text span:nth-child(3) { animation-delay: 0.6s; }
+        .animated-text span:nth-child(4) { animation-delay: 0.8s; }
+        .animated-text span:nth-child(5) { animation-delay: 1.0s; }
+        .animated-text span:nth-child(6) { animation-delay: 1.2s; }
+
+        p {
+            color: #594a4e;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            animation: fadeIn 2s ease forwards;
+            animation-delay: 1.5s;
+            opacity: 0;
+        }
+        
+        .main-heart {
+            font-size: 50px;
+            color: #ff4d6d;
+            display: inline-block;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        .heart {
+            position: absolute;
+            color: #ffb3c1;
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            animation: float 4s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes popUp {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3) translateY(20px); }
+            50% { opacity: 1; transform: scale(1.1); }
+            70% { transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.25); }
+            30% { transform: scale(1.05); }
+            45% { transform: scale(1.15); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(105vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Ваша фотография -->
+        <img src="https://ibb.co" alt="Мы вместе" class="couple-photo">
+        
+        <div class="main-heart">❤</div>
+        
+        <!-- Анимированный заголовок по словам -->
+        <div class="animated-text">
+            <span>Настюша,</span>
+            <span>у</span>
+            <span>нас</span>
+            <span>1</span>
+            <span>месяц!</span>
+        </div>
+        
+        <p>Маленькая дата нашего большого счастья.<br>Спасибо за эти прекрасные 30 дней!</p>
+    </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤';
+            heart.style.left = Math.random() * 100 + 'vw';
+            
+            // Больше разных размеров для хаотичности
+            const size = Math.random() * 25 + 10;
+            heart.style.fontSize = size + 'px';
+            
+            // Разная скорость полета
+            heart.style.animationDuration = (Math.random() * 2 + 2.5) + 's';
+            
+            document.body.appendChild(heart);
+
+            setTimeout(() => { heart.remove(); }, 4000);
+        }
+        
+        // Интервал уменьшен для создания большого количества сердечек
+        setInterval(createHeart, 100);
+    </script>
+</body>
+</html>
